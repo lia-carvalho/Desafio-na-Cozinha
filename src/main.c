@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+typedef struct{
+    char nome[150];
+    char url[200];
+    char id[30];
+    char pais[50];
+    float preco;
+    int tempoPreparo;
+} Receita;
+
+int main () {
+    FILE *arquivo = fopen("../../data/receitas.csv", "r");
+
+    if (arquivo == NULL){
+        printf("Erro ao abrir arquivo.\n");
+        return 1;
+    }
+
+    Receita menu[200];
+    int totalReceitas = 0;
+    char linha[500];    //string temporária
+
+        while (fgets(linha, sizeof(linha),arquivo) != NULL){
+            
+            char *separador = strtok (linha, ",");   //separa as linhas do arquivo quando acha vírgula
+            if (separador != NULL){
+                strcpy(menu[totalReceitas].nome,separador);
+            }
+            separador = strtok(NULL , ",");
+            if (separador != NULL){
+                strcpy(menu[totalReceitas].url, separador);
+            }
+            separador = strtok(NULL, ",");
+            if (separador != NULL){
+                strcpy(menu[totalReceitas].id, separador);
+            }
+            separador = strtok(NULL, ",");
+            if (separador != NULL){
+                strcpy(menu[totalReceitas].pais, separador);
+            }
+            menu[totalReceitas].tempoPreparo = 15 + (totalReceitas % 45);  //tempo varia entre 15 e 59 minutos
+            menu[totalReceitas].preco = 25.0 + (totalReceitas % 60);       //preço varia entre 25,00 e 84,00
+            totalReceitas++;
+        }
+        fclose(arquivo);
+
+        
+        printf( " %d receitas foram carregadas.\n", totalReceitas);
+        printf("Primeira Receita: %s | ID: %s | Pais:%s | Tempo de Preparo: %d | Preco:R$%.2f\n", menu[0].nome,menu[0].id, menu[0].pais,menu[0].tempoPreparo, menu[0].preco);
+
+
+
+    return 0;
+}
