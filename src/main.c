@@ -4,16 +4,18 @@
 
 
 typedef struct{
-    char nome[150];
-    char url[200];
     char id[30];
+    char nome[150];
+    char categoria[60];
     char pais[50];
+    char url[200];
+    char ingredientes[600];
     float preco;
     int tempoPreparo;
 } Receita;
 
 int main () {
-    FILE *arquivo = fopen("../../data/receitas.csv", "r");
+    FILE *arquivo = fopen("../data/receitas.csv", "r");
 
     if (arquivo == NULL){
         printf("Erro ao abrir arquivo.\n");
@@ -28,19 +30,27 @@ int main () {
             
             char *separador = strtok (linha, ",");   //separa as linhas do arquivo quando acha vírgula
             if (separador != NULL){
-                strcpy(menu[totalReceitas].nome,separador);
+                strcpy(menu[totalReceitas].id,separador);
             }
             separador = strtok(NULL , ",");
             if (separador != NULL){
-                strcpy(menu[totalReceitas].url, separador);
+                strcpy(menu[totalReceitas].nome, separador);
             }
             separador = strtok(NULL, ",");
             if (separador != NULL){
-                strcpy(menu[totalReceitas].id, separador);
+                strcpy(menu[totalReceitas].categoria, separador);
             }
             separador = strtok(NULL, ",");
             if (separador != NULL){
                 strcpy(menu[totalReceitas].pais, separador);
+            }
+            separador = strtok(NULL, ",");
+            if (separador != NULL){
+                strcpy(menu[totalReceitas].url, separador);
+            }
+            separador = strtok(NULL, "\n");
+            if (separador != NULL){
+                strcpy(menu[totalReceitas].ingredientes, separador);
             }
             menu[totalReceitas].tempoPreparo = 15 + (totalReceitas % 45);  //tempo varia entre 15 e 59 minutos
             menu[totalReceitas].preco = 25.0 + (totalReceitas % 60);       //preço varia entre 25,00 e 84,00
@@ -50,7 +60,7 @@ int main () {
 
         
         printf( " %d receitas foram carregadas.\n", totalReceitas);
-        printf("Primeira Receita: %s | ID: %s | Pais:%s | Tempo de Preparo: %d | Preco:R$%.2f\n", menu[0].nome,menu[0].id, menu[0].pais,menu[0].tempoPreparo, menu[0].preco);
+        printf("Primeira Receita: %s | ID: %s | Categoria: %s | Pais:%s | Ingredientes: %s | Tempo de Preparo: %d minutos | Preco:R$%.2f\n", menu[0].nome,menu[0].id,menu[0].categoria,menu[0].pais, menu[0].ingredientes,menu[0].tempoPreparo, menu[0].preco);
 
 
 
