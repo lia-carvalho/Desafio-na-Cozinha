@@ -1,22 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-<<<<<<< HEAD
 #include "hash.h"
-=======
-
-
-typedef struct{
-    char id[30];
-    char nome[150];
-    char categoria[60];
-    char pais[50];
-    char url[200];
-    char ingredientes[600];
-    float preco;
-    int tempoPreparo;
-} Receita;
->>>>>>> main
 
 int main () {
     FILE *arquivo = fopen("../data/receitas.csv", "r");
@@ -49,9 +34,7 @@ int main () {
                 strcpy(menu[totalReceitas].pais, separador);
             }
             separador = strtok(NULL, ",");
-            if (separador != NULL){
-                strcpy(menu[totalReceitas].url, separador);
-            }
+            
             separador = strtok(NULL, "\n");
             if (separador != NULL){
                 strcpy(menu[totalReceitas].ingredientes, separador);
