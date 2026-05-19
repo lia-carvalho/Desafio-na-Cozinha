@@ -8,7 +8,6 @@ typedef struct {
     int tempoPreparo; 
     double custo;
     double avaliacao;
-    int popularidade;
 } Receita;
 
 typedef struct NoLista {
