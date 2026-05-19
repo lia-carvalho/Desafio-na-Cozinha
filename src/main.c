@@ -1,16 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-
-typedef struct{
-    char nome[150];
-    char url[200];
-    char id[30];
-    char pais[50];
-    float preco;
-    int tempoPreparo;
-} Receita;
+#include "hash.h"
 
 int main () {
     FILE *arquivo = fopen("../../data/receitas.csv", "r");
