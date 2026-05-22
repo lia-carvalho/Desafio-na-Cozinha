@@ -19,5 +19,6 @@ typedef struct HashNode{
 
 int calcularHash(char *chave);
 void inicializarTabela(HashNode *tabela[]);
+void inserirReceita(HashNode *tabela[], Receita *novaReceita);
 #endif
 

@@ -21,3 +21,21 @@ void inicializarTabela(HashNode *tabela[]){
         tabela[i]= NULL;
     }
 }
+
+//Tratamento de colisões:
+void inserirReceita(HashNode *head[], Receita *novaReceita){
+    int indice = calcularHash(novaReceita ->nome);
+
+    HashNode *novoNo = (HashNode*) malloc (sizeof(HashNode));
+    if(novoNo ==NULL){
+        printf("Erro ao alocar espaço");
+        return;
+    }
+
+    novoNo->receita = novaReceita;
+
+    novoNo->prox = head[indice];
+
+    head[indice] = novoNo;
+
+}

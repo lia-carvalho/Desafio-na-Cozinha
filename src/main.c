@@ -3,6 +3,8 @@
 #include <string.h>
 #include "hash.h"
 
+#define TAMANHO_HASH 97
+
 int main () {
     FILE *arquivo = fopen("../data/receitas.csv", "r");
 
@@ -12,6 +14,9 @@ int main () {
     }
 
     Receita menu[70];
+    HashNode *tabela[TAMANHO_HASH];
+    inicializarTabela(tabela);
+
     int totalReceitas = 0;
     char linha[500];    //string temporária
 
@@ -41,14 +46,17 @@ int main () {
             }
             menu[totalReceitas].tempoPreparo = 15 + (totalReceitas % 45);  //tempo varia entre 15 e 59 minutos
             menu[totalReceitas].preco = 25.0 + (totalReceitas % 60);       //preço varia entre 25,00 e 84,00
+           
+            inserirReceita(tabela,&menu[totalReceitas]);
+           
             totalReceitas++;
         }
         fclose(arquivo);
 
         
         printf( " %d receitas foram carregadas.\n", totalReceitas);
-        printf("Primeira Receita: %s | ID: %s | Categoria: %s | Pais:%s | Ingredientes: %s | Tempo de Preparo: %d minutos | Preco:R$%.2f\n", menu[0].nome,menu[0].id,menu[0].categoria,menu[0].pais, menu[0].ingredientes,menu[0].tempoPreparo, menu[0].preco);
-
+        //Teste de leitura arquivo:
+        //printf("Primeira Receita: %s | ID: %s | Categoria: %s | Pais:%s | Ingredientes: %s | Tempo de Preparo: %d minutos | Preco:R$%.2f\n", menu[0].nome,menu[0].id,menu[0].categoria,menu[0].pais, menu[0].ingredientes,menu[0].tempoPreparo, menu[0].preco);
 
 
     return 0;
