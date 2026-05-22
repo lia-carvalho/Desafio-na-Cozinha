@@ -11,7 +11,7 @@ int main () {
         return 1;
     }
 
-    Receita menu[200];
+    Receita menu[70];
     int totalReceitas = 0;
     char linha[500];    //string temporária
 
