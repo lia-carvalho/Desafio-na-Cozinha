@@ -56,15 +56,15 @@ int main () {
                 menu[totalReceitas].avaliacao = atof(separador);
             }
            
-           
-            inserirReceita(tabela,&menu[totalReceitas]);
+           menu[totalReceitas].checksum = calcularChecksum(&menu[totalReceitas]);
+
+            inserirReceita(tabela,&menu[totalReceitas]);   //insere receita na tabela hash
            
             totalReceitas++;
         }
         fclose(arquivo);
-
         
-        printf( " %d receitas foram carregadas.\n", totalReceitas);
-       
+        executarModoInvestigacao(tabela);
+
     return 0;
 }

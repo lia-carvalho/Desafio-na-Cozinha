@@ -11,6 +11,7 @@ typedef struct{
     int tempoPreparo;
     float preco;
     float avaliacao;
+    unsigned int checksum;  //para o modo investigação
 }Receita;
 
 typedef struct HashNode{
@@ -23,6 +24,9 @@ void inicializarTabela(HashNode *tabela[]);
 void inserirReceita(HashNode *tabela[], Receita *novaReceita);
 
 Receita* buscarReceita(HashNode *tabela[], char *nomeBuscado); 
+
+unsigned int calcularChecksum(Receita *r);
+void executarModoInvestigacao(HashNode *tabela[]);
 
 #endif
 
