@@ -8,8 +8,9 @@ typedef struct{
     char categoria[60];
     char pais[50];
     char ingredientes[600];
-    float preco;
     int tempoPreparo;
+    float preco;
+    float avaliacao;
 }Receita;
 
 typedef struct HashNode{
