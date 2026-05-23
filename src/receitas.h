@@ -3,12 +3,14 @@
 
 typedef struct {
     int id;
-    char nome[100];
-    char categoria[50];
+    char nome[150];
+    char categoria[60];
+    char pais[50];
+    char ingredientes[600];
     int tempoPreparo; 
-    double custo;
+    double preco;
     double avaliacao;
-    int popularidade;
+    unsigned int checksum;
 } Receita;
 
 typedef struct NoLista {
