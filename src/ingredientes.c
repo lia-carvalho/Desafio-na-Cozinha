@@ -36,7 +36,7 @@ ArvoreIngredientes* criarTrieIngredientes() {
 }
 
 void vincularIngrediente(ArvoreIngredientes* trie, const char* ingrediente, Receita* receita){
-    if(trie == NULL || ingrediente == NULL | strlen(ingrediente) == 0 || receita == NULL ){
+    if(trie == NULL || ingrediente == NULL || strlen(ingrediente) == 0 || receita == NULL ){
         return;
     }
 
