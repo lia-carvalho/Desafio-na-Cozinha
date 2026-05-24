@@ -1,18 +1,8 @@
 #ifndef HASH_H
 #define HASH_H
 
+#include "receitas.h"
 
-typedef struct{
-    char id[30];
-    char nome[150];
-    char categoria[60];
-    char pais[50];
-    char ingredientes[600];
-    int tempoPreparo;
-    float preco;
-    float avaliacao;
-    unsigned int checksum;  //para o modo investigação
-}Receita;
 
 typedef struct HashNode{
     Receita *receita;

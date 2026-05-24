@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "receitas.h"
 #include "hash.h"
 #include "trie.h"
 #include "ingredientes.h"

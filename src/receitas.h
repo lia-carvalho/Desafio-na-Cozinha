@@ -10,7 +10,7 @@ typedef struct {
     int tempoPreparo; 
     double preco;
     double avaliacao;
-    unsigned int checksum;
+    unsigned int checksum;      //para o modo investigação
 } Receita;
 
 typedef struct NoLista {
