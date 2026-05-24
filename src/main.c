@@ -107,6 +107,11 @@ int main () {
 int opcaoInicial, opcaoSecundaria;
 char textoBuscado[100];
 ListaReceitas* resultadosBusca = NULL;
+
+//Testa modo investigação
+/*menu[0].preco= -1.99;
+strcpy(menu[0].id, menu[3].id); */
+
 do {
         printf("\n");
         printf("====================================================\n");

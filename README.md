@@ -17,13 +17,13 @@ O "Desafio na Cozinha" é um sistema inteligente desenvolvido em C para o gerenc
 ## Estruturas de Dados Implementadas
 ### 1. Tabela Hash
 
-    Onde foi aplicada: No armazenamento das receitas, no Modo Investigação, e nas funções de Busca por Ingrediente e Busca por Categoria.
+    Onde foi aplicada: No armazenamento das receitas, no Modo Investigação e na função Busca por Categoria.
 
     Justificativa: Escolhida pela eficiência de tempo O(1) no acesso médio aos dados. O tratamento de colisões foi feito utilizando listas encadeadas. 
 
 ### 2. Árvore Trie
 
-    Onde foi apliacada: Utilizada no Modo Consulta Rápida para buscar receitas por nome e prefixo.
+    Onde foi apliacada: Utilizada no Modo Consulta Rápida para buscar receitas por prefixo.
 
     Justificativa: Escolhida por ser eficiente na busca por prefixos.
 
@@ -59,3 +59,17 @@ Verifica a integridade dos dados e a existência de receitas corrompidas, detect
 - Receitas duplicadas.
 
 
+## Como Executar
+Requisitos:
+ Compilador GCC instalado.
+
+ Abra o terminal na pasta `src`.
+
+ Compile os arquivos com o comando:
+ 
+    gcc main.c hash.c trie.c ingredientes.c chef.c -o sistema
+
+Execute o programa:
+
+    Windows: .\sistema.exe
+    Linux: ./sistema
