@@ -18,7 +18,7 @@ ArvoreTrie* criarTrieNode();
 
 void inserirTrie(ArvoreTrie* trie, const char* nome, Receita* receita);  
 
-bool buscarPrefixo(ArvoreTrie* trie, const char* prefixo);
+ListaReceitas* buscarPrefixo(ArvoreTrie* trie, const char* prefixo);
 
 void liberarTrie(TrieNode* no);
 
