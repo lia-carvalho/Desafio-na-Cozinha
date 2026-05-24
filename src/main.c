@@ -177,7 +177,10 @@ do {
                     }
                     break;
                 case 3:
-                    /*busca categoria*/
+                    printf("\nDigite a categoria:\n");
+                    fgets(textoBuscado, sizeof(textoBuscado), stdin);
+                    textoBuscado[strcspn(textoBuscado, "\n")] = 0;
+                    buscarPorCategoria(tabela,textoBuscado);
                     break;
                 case 4:
                     printf("\nDigite o prefixo da receita:\n");

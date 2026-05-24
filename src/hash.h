@@ -27,6 +27,7 @@ Receita* buscarReceita(HashNode *tabela[], char *nomeBuscado);
 
 unsigned int calcularChecksum(Receita *r);
 void executarModoInvestigacao(HashNode *tabela[]);
+void buscarPorCategoria(HashNode *tabela[], char *categoriaBuscada);
 
 #endif
 

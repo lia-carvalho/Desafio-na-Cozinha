@@ -2,7 +2,7 @@
 #define receitas_h
 
 typedef struct {
-    int id;
+    char id[30];
     char nome[150];
     char categoria[60];
     char pais[50];

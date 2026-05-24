@@ -136,5 +136,23 @@
     
     }
 
+void buscarPorCategoria(HashNode *tabela[], char *categoriaBuscada) {
+    printf("\n--- Resultados para a Categoria: %s ---\n", categoriaBuscada);
+    int encontrou = 0;
 
+    for (int i = 0; i < TAMANHO_HASH; i++) {
+        HashNode *atual = tabela[i];
+        while (atual != NULL) {
+            if (strcmp(atual->receita->categoria, categoriaBuscada) == 0) {
+                printf(" [%s] %s\n", atual->receita->id, atual->receita->nome);
+                encontrou++;
+            }
+            atual = atual->prox;
+        }
+    }
+    
+    if (encontrou == 0) {
+        printf("Nenhuma receita encontrada nessa categoria.\n");
+    }
+}
 
