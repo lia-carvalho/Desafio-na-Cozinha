@@ -68,7 +68,7 @@ static void AcharReceitas(TrieIngrediente* no, ListaReceitas* resultados){
 
     for(int i = 0; i< 256; i++){
         if(no->filhos[i] != NULL){
-            acharReceitas(no->filhos[i], resultados);
+            AcharReceitas(no->filhos[i], resultados);
         }
     }
 }
@@ -91,6 +91,6 @@ ListaReceitas* buscarIngredientePorPrefixo(ArvoreIngredientes* trie, const char*
         }
         atual = atual->filhos[c];
     }
-   buscarReceitas(atual, resultados);
+   AcharReceitas(atual, resultados);
     return resultados;
 }

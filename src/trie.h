@@ -14,13 +14,10 @@ typedef struct {
     TrieNode* raiz;
 } ArvoreTrie;
 
-ArvoreTrie* criarTrieNode();
+ArvoreTrie* criarTrie();
 
 void inserirTrie(ArvoreTrie* trie, const char* nome, Receita* receita);  
 
 ListaReceitas* buscarPrefixo(ArvoreTrie* trie, const char* prefixo);
-
-void liberarTrie(TrieNode* no);
-
 
 #endif 

@@ -23,4 +23,5 @@ typedef struct {
     int tamanho;
 } ListaReceitas;
 
+void adicionarNaLista(ListaReceitas* lista, Receita* receita);
 #endif
