@@ -15,6 +15,5 @@ typedef struct{
 
 ArvoreIngredientes* criarTrieIngredientes();
 void vincularIngrediente(ArvoreIngredientes* trie, const char* ingrediente, Receita* receita);
-ListaReceitas* buscarIngrediente(ArvoreIngredientes* trie, const char* ingrediente);
-
+ListaReceitas* buscarIngredientePrefixo(ArvoreIngredientes* trie, const char* prefixo);
 #endif
