@@ -109,9 +109,6 @@ int opcaoInicial, opcaoSecundaria;
 char textoBuscado[100];
 ListaReceitas* resultadosBusca = NULL;
 
-//Testa modo investigação
-/*menu[0].preco= -1.99;
-strcpy(menu[0].id, menu[3].id); */
 
 do {
         printf("\n");
@@ -193,13 +190,7 @@ do {
                     printf("\nDigite a categoria:\n");
                     fgets(textoBuscado, sizeof(textoBuscado), stdin);
                     textoBuscado[strcspn(textoBuscado, "\n")] = 0;
-                    if (strlen(textoBuscado) > 0) {
-                        textoBuscado[0] = toupper((unsigned char)textoBuscado[0]);
-        
-                    for (int i = 1; textoBuscado[i] != '\0'; i++) {
-                        textoBuscado[i] = tolower((unsigned char)textoBuscado[i]);
-        }
-    }
+    
                     buscarPorCategoria(tabela,textoBuscado);
                     break;
                 case 4:

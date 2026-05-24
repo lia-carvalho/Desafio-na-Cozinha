@@ -140,10 +140,12 @@ void buscarPorCategoria(HashNode *tabela[], char *categoriaBuscada) {
     printf("\n--- Resultados para a Categoria: %s ---\n", categoriaBuscada);
     int encontrou = 0;
 
+    int tamanhoBusca = strlen(categoriaBuscada);
+
     for (int i = 0; i < TAMANHO_HASH; i++) {
         HashNode *atual = tabela[i];
         while (atual != NULL) {
-            if (strcmp(atual->receita->categoria, categoriaBuscada) == 0) {
+            if (strncasecmp(atual->receita->categoria, categoriaBuscada,tamanhoBusca) == 0) {
                 printf(" [%s] %s\n", atual->receita->id, atual->receita->nome);
                 encontrou++;
             }
