@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "receitas.h"
 #include "hash.h"
@@ -192,6 +193,13 @@ do {
                     printf("\nDigite a categoria:\n");
                     fgets(textoBuscado, sizeof(textoBuscado), stdin);
                     textoBuscado[strcspn(textoBuscado, "\n")] = 0;
+                    if (strlen(textoBuscado) > 0) {
+                        textoBuscado[0] = toupper((unsigned char)textoBuscado[0]);
+        
+                    for (int i = 1; textoBuscado[i] != '\0'; i++) {
+                        textoBuscado[i] = tolower((unsigned char)textoBuscado[i]);
+        }
+    }
                     buscarPorCategoria(tabela,textoBuscado);
                     break;
                 case 4:
