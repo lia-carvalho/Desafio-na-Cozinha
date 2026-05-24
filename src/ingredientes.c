@@ -55,22 +55,42 @@ void vincularIngrediente(ArvoreIngredientes* trie, const char* ingrediente, Rece
     adicionarNaLista(atual->receitasComIngrediente, receita);
 }
 
-ListaReceitas* buscarIngrediente(ArvoreIngredientes* trie, const char* ingrediente){
-    if(trie == NULL || ingrediente == NULL || strlen(ingrediente) == 0){
-        return NULL;
+static void AcharReceitas(TrieIngrediente* no, ListaReceitas* resultados){
+    if(no == NULL) return;
+
+    if(no->fim && no->receitasComIngrediente != NULL){
+        NoLista* atual = no->receitasComIngrediente->inicio;
+        while(atual != NULL){
+            adicionarNaLista(resultados, atual->receita);
+            atual = atual->prox;
+        }
+    }
+
+    for(int i = 0; i< 256; i++){
+        if(no->filhos[i] != NULL){
+            acharReceitas(no->filhos[i], resultados);
+        }
+    }
+}
+
+ListaReceitas* buscarIngredientePorPrefixo(ArvoreIngredientes* trie, const char* prefixo){
+    ListaReceitas* resultados = (ListaReceitas*)malloc(sizeof(ListaReceitas));
+    resultados->inicio = NULL;
+    resultados->tamanho = 0;
+    
+    if(trie == NULL || prefixo == NULL || strlen(prefixo) == 0){
+        return resultados;
     }
     TrieIngrediente* atual = trie->raiz;
 
-    for(int i = 0; ingrediente[i] != '\0'; i++){
-        unsigned char c = tolower((unsigned char)ingrediente[i]);
+    for(int i = 0; prefixo[i] != '\0'; i++){
+        unsigned char c = tolower((unsigned char)prefixo[i]);
 
         if(atual->filhos[c] == NULL){
-            return NULL;
+            return resultados;
         }
         atual = atual->filhos[c];
     }
-    if(atual->fim){
-        return atual->receitasComIngrediente;
-    }
-    return NULL;
+   buscarReceitas(atual, resultados);
+    return resultados;
 }
