@@ -78,11 +78,24 @@ int main () {
             if (separador != NULL){
                 menu[totalReceitas].preco = atof(separador);
             }
-            separador = strtok(NULL, "\n");
+            separador = strtok(NULL, ",");
             if (separador != NULL){
                 menu[totalReceitas].avaliacao = atof(separador);
             }
-           
+            separador = strtok(NULL, "\n");
+            menu[totalReceitas].numero_dependencias=0;
+            if (separador != NULL && strcmp(separador, "0") != 0){
+                char copiaDependencias[100];
+                strcpy(copiaDependencias, separador);
+
+                char *divideDep = strtok(copiaDependencias, "-");
+                while(divideDep != NULL && menu[totalReceitas].numero_dependencias < MAX_DEPENDENCIAS){
+                    strcpy(menu[totalReceitas].ids_dependencias[menu[totalReceitas].numero_dependencias], divideDep);
+                    menu[totalReceitas].numero_dependencias++;
+                    divideDep= strtok(NULL, "-");
+                }
+            }
+
            menu[totalReceitas].checksum = calcularChecksum(&menu[totalReceitas]);
 
            inserirReceita(tabela,&menu[totalReceitas]);   //insere receita na tabela hash
@@ -100,15 +113,15 @@ int main () {
         }
         fclose(arquivo);
 
-        for(int i=0; i<totalReceitas;i++){
-            catalogo[i]=&menu[i];
-        }
 
 //Interface:
 int opcaoInicial, opcaoSecundaria;
 char textoBuscado[100];
 ListaReceitas* resultadosBusca = NULL;
 
+//Testa modo investigação
+/*menu[0].preco= -1.99;
+strcpy(menu[0].id, menu[3].id); */
 
 do {
         printf("\n");
