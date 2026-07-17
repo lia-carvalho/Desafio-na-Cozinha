@@ -1,0 +1,24 @@
+#ifndef GRAFOS_H
+#define GRAFOS_H
+
+#include "receitas.h"
+
+typedef struct Aresta{
+    int indice_destino;
+    struct Aresta* proximo;
+}Aresta;
+
+typedef struct Vertice{
+    Receita* receita;
+    Aresta* arestas;   //arestas que saem do vértice
+    int cor;
+}Vertice;
+
+typedef struct Grafo{
+    int total_vertices;
+    Vertice* lista_adjacencia;
+}Grafo;
+
+Grafo* criarGrafo(int total_vertices);
+
+#endif
