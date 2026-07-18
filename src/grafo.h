@@ -21,5 +21,7 @@ typedef struct Grafo{
 
 Grafo* criarGrafo(int total_vertices);
 void conectarDependencias(Grafo* grafo, Receita* catalogo[], int total_vertices);
-
+void verificarErrosDependencia(Grafo* grafo, Receita* catalogo[], int total_vertices);
+void ordemProducao(Grafo* grafo, Receita* catalogo[], int total_vertices, int indiceAlvo);
+void liberarGrafo(Grafo* grafo, int total_vertices);
 #endif

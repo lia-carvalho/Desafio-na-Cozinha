@@ -262,11 +262,47 @@ do {
             printf("Digite opcao válida.\n");
             }
             break;
-        case 5:
-            printf("\n--- OFICINA DE PRODUCAO ---\n");
+        case 5:{
             Grafo* grafo = criarGrafo(totalReceitas);
             conectarDependencias(grafo,catalogo,totalReceitas);
+            printf("\n--- OFICINA DE PRODUCAO ---\n");
+            printf("1.Verificar se existe erro de dependencia (Ciclos)\n");
+            printf("2.Ver preparos anteriores de uma receita especifica\n");
+            printf("Digite opcao:\n");
+            scanf("%d",&opcaoSecundaria);
+            while ((c = getchar()) != '\n' && c != EOF);
+
+            switch(opcaoSecundaria){
+                case 1:{
+                    verificarErrosDependencia(grafo,catalogo,totalReceitas);
+                    break;
+                }
+                case 2: {
+                    char nomeBusca[100];
+                    printf("Digite o nome da receita a ser investigada: ");
+                    fgets(nomeBusca,sizeof(nomeBusca),stdin);
+                    nomeBusca[strcspn(nomeBusca,"\n")] = '\0';
+
+                    int indice = -1;
+                    for(int i=0; i<totalReceitas;i++){
+                        if(strcmp(catalogo[i]->nome,nomeBusca) == 0){
+                            indice =i;
+                            break;
+                        }
+                    }
+                    if(indice!= -1){
+                        ordemProducao(grafo,catalogo,totalReceitas,indice);
+                    } else{
+                        printf("[ERRO] Receita nao encontrada \n");
+                    }
+                    break;
+                }
+                default:
+                printf("Opcao invalida!\n");
+            }
+            liberarGrafo(grafo,totalReceitas);
             break;
+        }
         case 6:
             printf("\n--- MODO INVESTIGACAO ---\n");
                 executarModoInvestigacao(tabela);
