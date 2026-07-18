@@ -8,6 +8,7 @@
 #include "trie.h"
 #include "ingredientes.h"
 #include "chef.h"
+#include "grafo.h"
 
 #define TAMANHO_HASH 97
 
@@ -132,7 +133,10 @@ do {
         printf("2. Modulo 2 - Busca Rapida no Cardapio\n");
         printf("3. Modulo 3 - Consulta por Ingrediente\n");
         printf("4. Modulo 4 - Recomendacao do Chef (Modo Chef)\n");
-        printf("5. Modo Investigacao\n");
+        printf("5. Modulo 5 - Oficina de Producao\n");
+        printf("6. Modo Investigacao\n");
+        printf("7. Modo Logistica\n");
+        printf("8. Laboratorio de Inovacao do Chef\n");
         printf("0. Sair do Sistema\n");
         printf("====================================================\n");
         printf("Escolha uma opcao: ");
@@ -259,8 +263,19 @@ do {
             }
             break;
         case 5:
+            printf("\n--- OFICINA DE PRODUCAO ---\n");
+            Grafo* grafo = criarGrafo(totalReceitas);
+            conectarDependencias(grafo,catalogo,totalReceitas);
+            break;
+        case 6:
             printf("\n--- MODO INVESTIGACAO ---\n");
                 executarModoInvestigacao(tabela);
+            break;
+        case 7:
+
+            break;
+        case 8:
+
             break;
         case 0:
             printf("\nSaindo do Sistema...\n");
