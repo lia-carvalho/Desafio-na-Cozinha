@@ -77,7 +77,7 @@ void verificarErrosDependencia(Grafo* grafo, Receita* catalogo[], int total_vert
 
             if(detectarCiclo_DFS(grafo,i) == true){
                 printf("[ALERTA] Erro de dependencia detectado no cardapio!\n");
-                printf("A receita [%s] (ID: %s) esta em um ciclo.\n", catalogo[i]->nome, catalogo[i]->id);
+                printf("A receita %s (ID: %s) esta em um ciclo.\n", catalogo[i]->nome, catalogo[i]->id);
                 achou_erro = true;
                 break;
             }
@@ -89,7 +89,7 @@ void verificarErrosDependencia(Grafo* grafo, Receita* catalogo[], int total_vert
 }
 
 void ordemProducao(Grafo* grafo, Receita* catalogo[], int total_vertices, int indiceAlvo){
-    printf("\n ---PREPAROS NECESSARIOS PARA: [%s]---\n",catalogo[indiceAlvo]->nome);
+    printf("\n ---PREPAROS NECESSARIOS PARA: %s---\n",catalogo[indiceAlvo]->nome);
     bool tem_dependencia = false;
 
     for(int i=0; i<total_vertices;i++){
@@ -97,7 +97,7 @@ void ordemProducao(Grafo* grafo, Receita* catalogo[], int total_vertices, int in
         Aresta*atual = grafo->lista_adjacencia[i].arestas;
         while(atual != NULL){
             if(atual->indice_destino == indiceAlvo){
-                printf(" -> [%s]\n", catalogo[i]->nome);
+                printf(" -> %s\n", catalogo[i]->nome);
                 tem_dependencia= true;
                 break;
             }

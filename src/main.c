@@ -110,6 +110,8 @@ int main () {
             divide= strtok(NULL, "-");
            }
            
+           catalogo[totalReceitas]=&menu[totalReceitas];
+           
            totalReceitas++;
         }
         fclose(arquivo);
