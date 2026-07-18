@@ -111,7 +111,7 @@ int main () {
            }
            
            catalogo[totalReceitas]=&menu[totalReceitas];
-           
+
            totalReceitas++;
         }
         fclose(arquivo);
@@ -307,7 +307,31 @@ do {
         }
         case 6:
             printf("\n--- MODO INVESTIGACAO ---\n");
-                executarModoInvestigacao(tabela);
+            printf("1. Investigar Integridade dos Dados (Hash)\n");
+            printf("2. Investigar Inconsistencias Operacionais (Grafos)\n");
+            printf("Digite opcao\n");
+            scanf("%d", &opcaoSecundaria);
+            while ((c = getchar()) != '\n' && c != EOF);
+
+            switch(opcaoSecundaria){
+                case 1:{
+                    printf("\nIniciando varredura na base de dados\n");
+                    executarModoInvestigacao(tabela);
+                    break;
+                }
+                case 2:{
+                printf("\nIniciando verificacao de Ciclos\n");
+
+                Grafo* grafo= criarGrafo(totalReceitas);
+                conectarDependencias(grafo,catalogo,totalReceitas);
+                verificarErrosDependencia(grafo, catalogo, totalReceitas);
+                liberarGrafo(grafo,totalReceitas);
+
+                break;
+                }
+                default:
+                printf("Opcao Invalida\n");
+            }
             break;
         case 7:
 
