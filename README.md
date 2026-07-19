@@ -35,10 +35,26 @@ O "Desafio na Cozinha" é um sistema inteligente desenvolvido em C para o gerenc
 
 ### 4. Grafos
 
-    Onde foi aplicado: Módulo 5 (Oficina de Produção), Modo Investigação e Módulo 8 (Navegação de Emergência).
+    Onde foi aplicado: Módulo 5 - Oficina de Produção, Modo Investigação, Modo Logística e Laboratório de Inovação do Chef. 
 
     Justificativa: Estrutura ideal para mapear relações. 
-    A Busca em Profundidade (DFS) foi utilizada para rastrear a ordem de preparos e detectar ciclos (dependências inválidas). A Busca em Largura (BFS) foi aplicada em um mapa logístico para encontrar rotas mais curtas e seguras.
+     - O mapa logístico de Pelotas foi implementado usando Listas de Adjacência.
+     - A Busca em Profundidade (DFS) foi utilizada para rastrear a ordem de preparos e detectar ciclos (dependências inválidas).
+    - A Busca em Largura (BFS) foi aplicada em um mapa logístico para encontrar rotas mais curtas e seguras.
+    - Dijkstra: Calcula o caminho mínimo (em minutos) para rotas de entrega.
+    - Prim: Cria uma Árvore Geradora Mínima para redes de distribuição, conectando todos os bairros com o menor custo total.
+
+
+### 5. Programação Dinâmica
+
+    Onde foi aplicado: Menu Degustação VIP
+
+    Justificativa: Utiliza a abordagem Bottom-up (tabulação) para entregar a receita com a maior avaliação possível que cabe exatamente no limite de orçamento ou tempo do cliente.
+
+### 6. Union-Find
+    Onde foi aplicado: Laboratório de Inovação do Chef - Comunidades Gastronômicas
+
+    Justificativa: Utilizado para descobrir e agrupar receitas similares de acordo com o País e Categoria.
 
 ## Funções do Sistema
 ### 1. Módulo 1 - Livro de Receitas
@@ -71,8 +87,10 @@ Verifica a integridade dos dados e a existência de receitas corrompidas, detect
 Verifica inconsistências Operacionais: detecção de Ciclos.
 
 ### 7. Modo Logística
+Sistema de Delivery. Calcula rotas de entrega pelo mapa de Pelotas.
 
 ### 8. Menu Degustação VIP
+Encontra receitas com a maior avaliação de acordo com um limite de tempo/orçamento.
 
 ### 9. Laboratório de Inovação do Chef
 Apresenta soluções avançadas de algoritmos para a expansão do restaurante:
@@ -87,7 +105,7 @@ Requisitos:
 
  Compile os arquivos com o comando:
  
-    gcc main.c hash.c trie.c ingredientes.c chef.c -o sistema
+    gcc main.c hash.c trie.c ingredientes.c chef.c grafo.c modulo6.c grafoPonderado.c -o sistema
 
 Execute o programa:
 
