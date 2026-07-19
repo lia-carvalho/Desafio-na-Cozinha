@@ -356,7 +356,7 @@ do {
                         printf("\n"); 
                     }
                     printf("----------------------------------------\n");
-                    printf("Digite o ID da regiao de ORIGEM (Ex: 0 para Cozinha Central): ");
+                    printf("Digite o ID da regiao de ORIGEM: ");
                     scanf("%d", &origem);
                     printf("Digite o ID da regiao de DESTINO: ");
                     scanf("%d", &destino);
@@ -380,7 +380,36 @@ do {
 
             break;
         case 8:
+             printf("\n--- MENU DEGUSTACAO VIP ---\n");
+            printf("Escolha a restricao para a otimizacao do cardapio:\n");
+            printf("1. Maximar Avaliacao com limite de TEMPO\n");
+            printf("2. Maximar Avaliacao com limite de ORÇAMENTO\n");
+            printf("Escolha uma opcao: ");
+            scanf("%d", &opcaoSecundaria);
+            while ((c = getchar()) != '\n' && c != EOF);
 
+            switch (opcaoSecundaria) {
+                case 1: {
+                    int tempoMaximo;
+                    printf("Digite o tempo maximo de preparo (em minutos): ");
+                    scanf("%d", &tempoMaximo);
+                    while ((c = getchar()) != '\n' && c != EOF);
+                    
+                    sugerirMenuVipTempo(catalogo, totalReceitas, tempoMaximo);
+                    break;
+                }
+                case 2: {
+                    int orcamentoMaximo; 
+                    printf("Digite o orcamento maximo da cozinha (em Reais): R$ ");
+                    scanf("%d", &orcamentoMaximo);
+                    while ((c = getchar()) != '\n' && c != EOF);
+                    
+                    sugerirMenuVipPreco(catalogo, totalReceitas, orcamentoMaximo);
+                    break;
+                }
+                default:
+                    printf("\n[ERRO] Opcao invalida!\n");
+            }
             break;
         case 0:
             printf("\nSaindo do Sistema...\n");
