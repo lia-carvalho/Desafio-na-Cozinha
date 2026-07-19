@@ -1,6 +1,8 @@
 #ifndef GRAFOPONDERADO_H
 #define GRAFOPONDERADO_H
 
+#define infinito 9999999
+
 typedef struct ArestaLogistica{
     int indiceDestino;
     int peso;
@@ -23,7 +25,7 @@ void liberarGrafoLogistico(GrafoLogistico* grafo);
 void imprimirGrafoLogistico(GrafoLogistico* grafo);
 void definirNomeRegiao(GrafoLogistico* grafo, int indice, const char* nome);
 void calcularDistribuicao(GrafoLogistico* grafo);
-void encontrarRotaEntrega(GrafoLogistico* grafo, int origem, int destino);
+void calcularRotaEntrega(GrafoLogistico* grafo, int origem, int destino);
 void carregarMapaPelotas(GrafoLogistico* mapa);
 void calcularRotaEmergenciaBFS(GrafoLogistico* grafo, int origem, int destino);
 #endif
