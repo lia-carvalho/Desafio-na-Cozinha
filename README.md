@@ -11,7 +11,7 @@ O "Desafio na Cozinha" é um sistema inteligente desenvolvido em C para o gerenc
 
 
   - **Extração de dados:** A API forneceu receitas com os campos *Id*, *Nome*, *Categoria*, *País*, *Ingredientes*, *Modo de preparo* e *URL*. 
-  - **Geração de dados:** Os outros campos necessários para o trabalho como *Tempo de Preparo*, *Custo* e *Avaliação* foram adicionados de maneira aleatória na planilha.
+  - **Geração de dados:** Os outros campos necessários para o trabalho como *Tempo de Preparo*, *Custo*, *Avaliação* e *Dependências* foram adicionados de maneira aleatória na planilha.
   - **Adaptações:** No arquivo final foram removidos os campos Modo de Preparo e URL. Vírgulas foram substituídas por travessões para garantir que a função `strtok` da linguagem C pudesse separar as colunas corretamente durante a leitura do arquivo.
 
 ## Estruturas de Dados Implementadas
@@ -33,6 +33,13 @@ O "Desafio na Cozinha" é um sistema inteligente desenvolvido em C para o gerenc
 
     Justificativa: A abordagem gulosa resolve o problema da recomendação ao fazer a melhor escolha local possível. No Menu Econômico, é avaliado o custo benefício de cada prato, ou seja, avaliação/preço. No Menu Rápido, a escolha gulosa prioriza os pratos que levam o menor tempo de preparo.
 
+### 4. Grafos
+
+    Onde foi aplicado: Módulo 5 (Oficina de Produção), Modo Investigação e Módulo 8 (Navegação de Emergência).
+
+    Justificativa: Estrutura ideal para mapear relações. 
+    A Busca em Profundidade (DFS) foi utilizada para rastrear a ordem de preparos e detectar ciclos (dependências inválidas). A Busca em Largura (BFS) foi aplicada em um mapa logístico para encontrar rotas mais curtas e seguras.
+
 ## Funções do Sistema
 ### 1. Módulo 1 - Livro de Receitas
 
@@ -52,12 +59,25 @@ Permite consultar uma receita a partir de um ingrediente específico.
 ### 4. Módulo 4 - Recomendação do Chef
 Sugere receitas com base em restrições personalizadas, como custo, tempo de preparo, avaliação ou ingredientes.
 
-### Modo Investigação 
+### 5. Módulo 5 - Oficina de Produção
+Focado na logística da cozinha, permite verificar preparos anteriores (pré-requisitos de uma receita) e analisa a rede de dependências do cardápio.
+
+### 6.  Modo Investigação 
 Verifica a integridade dos dados e a existência de receitas corrompidas, detectando:
 - Receitas alteradas desde sua inserção no sistema.
 - Receitas inconsistentes (com valores numéricos inválidos).
 - Receitas duplicadas.
 
+Verifica inconsistências Operacionais: detecção de Ciclos.
+
+### 7. Modo Logística
+
+### 8. Menu Degustação VIP
+
+### 9. Laboratório de Inovação do Chef
+Apresenta soluções avançadas de algoritmos para a expansão do restaurante:
+- **Navegação de Emergência:** Calcula rotas seguras entre regiões utilizando grafos e BFS.
+- **Comunidades Gastronômicas:** Descobre e agrupa receitas semelhantes formando famílias culinárias (Union-Find).
 
 ## Como Executar
 Requisitos:
