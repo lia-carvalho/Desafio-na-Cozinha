@@ -134,3 +134,63 @@ void calcularRotaEntrega(GrafoLogistico* grafo, int origem, int destino) {
     free(anteriores);
     free(visitados);
     }
+
+void calcularDistribuicao(GrafoLogistico* grafo) {
+        int* chaves = (int*)malloc(grafo->totalVertices * sizeof(int));
+        int* pai = (int*)malloc(grafo->totalVertices * sizeof(int));
+        bool* naArvore = (bool*)malloc(grafo->totalVertices * sizeof(bool));
+
+        for(int i = 0; i < grafo->totalVertices; i++) {
+            chaves[i] = infinito;
+            pai[i] = -1;
+            naArvore[i] = false;
+        }
+
+        chaves[0] = 0;
+
+        for(int count = 0; count < grafo->totalVertices - 1; count++) {
+            int u = -1;
+            int min = infinito;
+
+            for(int v = 0; v < grafo->totalVertices; v++) {
+                if(!naArvore[v] && chaves[v] < min) {
+                    min = chaves[v];
+                    u = v;
+                }
+            }
+
+            if(u == -1) {
+                break;
+            }   
+
+            naArvore[u] = true;
+
+            ArestaLogistica* arestaAtual = grafo->listaAdjacencia[u].arestas;
+            while(arestaAtual != NULL) {
+                int v = arestaAtual->indiceDestino;
+                int pesoAresta = arestaAtual->peso;
+
+                if(!naArvore[v] && pesoAresta < chaves[v]) {
+                    chaves[v] = pesoAresta;
+                    pai[v] = u;
+                }
+                arestaAtual = arestaAtual->proximo;
+            }
+        }
+
+        printf("Menor caminho para distribuicao de produtos:\n");
+        int custoTotal = 0;
+
+        for(int i = 1; i < grafo->totalVertices; i++) {
+            if(pai[i] != -1) {
+                printf("Conectar %s a %s: Custo = %d\n", grafo->listaAdjacencia[pai[i]].nomeRegiao, grafo->listaAdjacencia[i].nomeRegiao, chaves[i]);
+                custoTotal += chaves[i];
+            }
+        }
+
+        printf("Custo total da distribuicao: %d\n", custoTotal);
+
+        free(chaves);
+        free(pai);
+        free(naArvore);
+    }
