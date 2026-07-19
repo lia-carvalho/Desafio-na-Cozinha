@@ -362,7 +362,7 @@ do {
                         printf("\n"); 
                     }
                     printf("----------------------------------------\n");
-                    printf("Digite o ID da regiao de ORIGEM (Ex: 0 para Cozinha Central): ");
+                    printf("Digite o ID da regiao de ORIGEM: ");
                     scanf("%d", &origem);
                     printf("Digite o ID da regiao de DESTINO: ");
                     scanf("%d", &destino);
