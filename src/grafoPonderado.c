@@ -59,6 +59,78 @@ void liberarGrafoLogistico(GrafoLogistico* grafo) {
             free(temp);
         }
     }
+
     free(grafo->listaAdjacencia);
     free(grafo);
 }
+
+void calcularRotaEntrega(GrafoLogistico* grafo, int origem, int destino) {
+    
+    int* distancias = (int*)malloc(grafo->totalVertices * sizeof(int));
+    int* anteriores = (int*)malloc(grafo->totalVertices * sizeof(int));
+    bool* visitados = (bool*)malloc(grafo->totalVertices * sizeof(bool));
+
+    for (int i = 0; i < grafo->totalVertices; i++) {
+        distancias[i] = infinito;
+        anteriores[i] = -1;
+        visitados[i] = false;
+    }
+
+    distancias[origem] = 0;
+
+    for (int count = 0; count < grafo->totalVertices - 1; count++) {
+        int u = -1;
+        int min = infinito;
+        for (int v = 0; v < grafo->totalVertices; v++) {
+            if (!visitados[v] && distancias[v] < min) {
+                min = distancias[v];
+                u = v;
+            }
+        }
+        if(u == -1) {
+            break;
+        }
+        visitados[u] = true;
+
+        ArestaLogistica* arestaAtual = grafo->listaAdjacencia[u].arestas;
+        while (arestaAtual != NULL) {
+            int v = arestaAtual->indiceDestino;
+            int pesoAresta = arestaAtual->peso;
+
+            if (!visitados[v] && distancias[u] != infinito && distancias[u] + pesoAresta < distancias[v]) {
+                distancias[v] = distancias[u] + pesoAresta;
+                anteriores[v] = u;
+            }
+            arestaAtual = arestaAtual->proximo;
+        }
+    }
+
+    if (distancias[destino] == infinito) {
+        printf("Nao existe rota de entrega de %s para %s.\n", grafo->listaAdjacencia[origem].nomeRegiao, grafo->listaAdjacencia[destino].nomeRegiao);
+    } else {
+        printf("Rota de entrega de %s para %s:\n", grafo->listaAdjacencia[origem].nomeRegiao, grafo->listaAdjacencia[destino].nomeRegiao);
+        printf("Tempo estimado: %d minutos\n", distancias[destino]);
+        printf("Caminho: ");
+
+        int* caminho = (int*)malloc(grafo->totalVertices * sizeof(int));
+        int passadas = 0;
+        int atual = destino;
+
+        while (atual != -1) {
+            caminho[passadas++] = atual;
+            atual = anteriores[atual];
+        }
+
+        for (int i = passadas - 1; i >= 0; i--) {
+            printf("%s", grafo->listaAdjacencia[caminho[i]].nomeRegiao);
+            if (i > 0) {
+                printf(" -> ");
+            } 
+        } 
+            printf("\n");
+             free(caminho);
+        }
+    free(distancias);
+    free(anteriores);
+    free(visitados);
+    }
