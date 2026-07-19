@@ -194,3 +194,86 @@ void calcularDistribuicao(GrafoLogistico* grafo) {
         free(pai);
         free(naArvore);
     }
+
+
+void carregarMapaPelotas(GrafoLogistico* mapa) {
+    
+    const char* bairros[30] = {
+        "Cozinha Central (Centro)", "Fragata", "Tres Vendas", "Areal", "Laranjal",
+        "Porto", "Balsa", "Simoes Lopes", "Guabiroba", "Gotuzzo",
+        "Bom Jesus", "UFPel Anglo", "UFPel Cotada", "IFSul", "Praca Cel. Pedro Osorio",
+        "Mercado Publico", "Shopping Pelotas", "Parque Una", "Recanto de Portugal", "Las Acacias",
+        "Sitio Floresta", "Lindoia", "Pestano", "Getulio Vargas", "Fatima",
+        "Navegantes", "Rodoviaria", "Aeroporto", "Hospital Chico Paulista", "UFPel Capao do Leao"
+    };
+
+    for (int i = 0; i < 30; i++) {
+        definirNomeRegiao(mapa, i, bairros[i]);
+    }
+
+
+    adicionarArestaLogistica(mapa, 0, 1, 15);  // Centro -> Fragata
+    adicionarArestaLogistica(mapa, 0, 2, 12);  // Centro -> Tres Vendas
+    adicionarArestaLogistica(mapa, 0, 3, 10);  // Centro -> Areal
+    adicionarArestaLogistica(mapa, 0, 5, 8);   // Centro -> Porto
+    adicionarArestaLogistica(mapa, 0, 14, 2);  // Centro -> Praca Cel Pedro Osorio
+    adicionarArestaLogistica(mapa, 0, 15, 3);  // Centro -> Mercado Publico
+    adicionarArestaLogistica(mapa, 0, 26, 10); // Centro -> Rodoviaria
+
+    
+    adicionarArestaLogistica(mapa, 1, 8, 7);   // Fragata -> Guabiroba
+    adicionarArestaLogistica(mapa, 1, 9, 6);   // Fragata -> Gotuzzo
+    adicionarArestaLogistica(mapa, 1, 13, 5);  // Fragata -> IFSul
+    adicionarArestaLogistica(mapa, 1, 7, 8);   // Fragata -> Simoes Lopes
+    adicionarArestaLogistica(mapa, 1, 28, 5);  // Fragata -> Hospital Chico Paulista
+    adicionarArestaLogistica(mapa, 1, 29, 25); // Fragata -> UFPel Capao do Leao
+    adicionarArestaLogistica(mapa, 8, 9, 4);   // Guabiroba -> Gotuzzo
+    adicionarArestaLogistica(mapa, 7, 26, 6);  // Simoes Lopes -> Rodoviaria
+    adicionarArestaLogistica(mapa, 8, 28, 3);  // Guabiroba -> Hospital Chico Paulista
+    adicionarArestaLogistica(mapa, 9, 28, 4);  // Gotuzzo -> Hospital Chico Paulista
+
+    
+    adicionarArestaLogistica(mapa, 2, 20, 10); // Tres Vendas -> Sitio Floresta
+    adicionarArestaLogistica(mapa, 2, 21, 8);  // Tres Vendas -> Lindoia
+    adicionarArestaLogistica(mapa, 2, 22, 12); // Tres Vendas -> Pestano
+    adicionarArestaLogistica(mapa, 2, 23, 15); // Tres Vendas -> Getulio Vargas
+    adicionarArestaLogistica(mapa, 2, 26, 8);  // Tres Vendas -> Rodoviaria
+    adicionarArestaLogistica(mapa, 20, 21, 5); // Sitio Floresta -> Lindoia
+    adicionarArestaLogistica(mapa, 21, 22, 6); // Lindoia -> Pestano
+    adicionarArestaLogistica(mapa, 22, 23, 7); // Pestano -> Getulio Vargas
+
+    
+    adicionarArestaLogistica(mapa, 3, 4, 15);  // Areal -> Laranjal
+    adicionarArestaLogistica(mapa, 3, 10, 6);  // Areal -> Bom Jesus
+    adicionarArestaLogistica(mapa, 3, 16, 5);  // Areal -> Shopping Pelotas
+    adicionarArestaLogistica(mapa, 3, 17, 7);  // Areal -> Parque Una
+    adicionarArestaLogistica(mapa, 16, 17, 3); // Shopping -> Parque Una
+    adicionarArestaLogistica(mapa, 4, 18, 8);  // Laranjal -> Recanto de Portugal
+    adicionarArestaLogistica(mapa, 4, 19, 10); // Laranjal -> Las Acacias
+    adicionarArestaLogistica(mapa, 18, 19, 4); // Recanto de Portugal -> Las Acacias
+
+    
+    adicionarArestaLogistica(mapa, 5, 6, 5);   // Porto -> Balsa
+    adicionarArestaLogistica(mapa, 5, 11, 4);  // Porto -> UFPel Anglo
+    adicionarArestaLogistica(mapa, 5, 25, 6);  // Porto -> Navegantes
+    adicionarArestaLogistica(mapa, 6, 25, 4);  // Balsa -> Navegantes
+    adicionarArestaLogistica(mapa, 11, 12, 5); // UFPel Anglo -> UFPel Cotada
+    adicionarArestaLogistica(mapa, 11, 14, 6); // UFPel Anglo -> Praca Cel Pedro Osorio
+    
+
+    adicionarArestaLogistica(mapa, 14, 15, 2); // Praca -> Mercado Publico
+    adicionarArestaLogistica(mapa, 14, 13, 5); // Praca -> IFSul
+    adicionarArestaLogistica(mapa, 15, 5, 4);  // Mercado Publico -> Porto
+
+    
+    adicionarArestaLogistica(mapa, 13, 26, 7); // IFSul -> Rodoviaria
+    adicionarArestaLogistica(mapa, 16, 2, 15); // Shopping -> Tres Vendas
+    adicionarArestaLogistica(mapa, 17, 2, 14); // Parque Una -> Tres Vendas
+    adicionarArestaLogistica(mapa, 10, 24, 5); // Bom Jesus -> Fatima
+    adicionarArestaLogistica(mapa, 24, 5, 8);  // Fatima -> Porto
+    adicionarArestaLogistica(mapa, 26, 27, 12);// Rodoviaria -> Aeroporto
+    adicionarArestaLogistica(mapa, 2, 27, 10); // Tres Vendas -> Aeroporto
+    adicionarArestaLogistica(mapa, 1, 27, 15); // Fragata -> Aeroporto
+    adicionarArestaLogistica(mapa, 3, 2, 10);  // Areal -> Tres Vendas
+    adicionarArestaLogistica(mapa, 23, 27, 18);// Getulio Vargas -> Aeroporto
+}
