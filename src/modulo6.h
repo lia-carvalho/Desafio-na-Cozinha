@@ -3,9 +3,9 @@
 
 #include "receitas.h"
 
-void iniciarModulo6(Receita* catalogo, int totalReceitas);
+void iniciarModulo6(Receita** catalogo, int totalReceitas);
 
-void sugerirMenuVipTempo(Receita* catalogo, int totalReceitas, int tempoMaximo);
-void sugerirMenuVipPreco(Receita* catalogo, int totalReceitas, double precoMaximo);
+void sugerirMenuVipTempo(Receita* catalogo[], int totalReceitas, int tempoMaximo);
+void sugerirMenuVipPreco(Receita* catalogo[], int totalReceitas, int precoMaximo);
 
 #endif
