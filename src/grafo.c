@@ -121,3 +121,55 @@ void liberarGrafo(Grafo* grafo, int total_vertices){
     free(grafo->lista_adjacencia);
     free(grafo);
 }
+
+//Módulo 8 - Comunidades Gastronômicas
+int representanteConjunto[100];
+
+int encontrarRaiz(int i){
+    if(representanteConjunto[i] == i){
+        return i;
+    }
+    representanteConjunto[i] = encontrarRaiz(representanteConjunto[i]);
+    return representanteConjunto[i];
+}
+
+void unirConjuntos(int i,int j){
+    int raiz_i = encontrarRaiz(i);
+    int raiz_j = encontrarRaiz(j);
+    if(raiz_i != raiz_j){
+        representanteConjunto[raiz_i]=raiz_j;
+    }
+}
+
+void identificarComunidades(Receita* catalogo[], int totalReceitas){
+    for (int i=0; i< totalReceitas; i++){
+        representanteConjunto[i]=i;
+    }
+    for(int i = 0; i < totalReceitas ; i++){
+        for(int j = i + 1; j < totalReceitas ; j++){
+            //Regra de similaridade: mesma CATEGORIA e mesmo PAÍS
+        if(strcmp(catalogo[i]->categoria, catalogo[j]->categoria) == 0 && 
+            strcmp(catalogo[i]->pais, catalogo[j]->pais)== 0){
+                unirConjuntos(i,j);
+            }
+        }
+    }
+    printf("\n ==== FAMILIAS CULINARIAS ENCONTRADAS ====\n");
+    int ja_impresso[100] = {0};
+    int numComunidade= 1;
+    for (int i=0;i<totalReceitas;i++){
+        int raiz =encontrarRaiz(i);
+
+        if(ja_impresso[raiz]==0){
+            printf(" Familia Culinaria %d (Origem: %s / %s)\n",numComunidade++,catalogo[i]->pais,catalogo[i]->categoria);
+
+            for(int j=0; j<totalReceitas;j++){
+                if(encontrarRaiz(j) == raiz){
+                    printf("- [%s] %s\n",catalogo[j]->id, catalogo[j]->nome);
+                }
+            }
+            ja_impresso[raiz]= 1;
+        }
+    }
+
+}

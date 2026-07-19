@@ -9,6 +9,8 @@
 #include "ingredientes.h"
 #include "chef.h"
 #include "grafo.h"
+#include "modulo6.h"
+#include "grafoPonderado.h"
 
 #define TAMANHO_HASH 97
 
@@ -141,7 +143,7 @@ do {
         printf("5. Modulo 5 - Oficina de Producao\n");
         printf("6. Modo Investigacao\n");
         printf("7. Modo Logistica\n");
-        printf("8. Menu Degustação VIP\n")
+        printf("8. Menu Degustação VIP\n");
         printf("9. Laboratorio de Inovacao do Chef\n");
         printf("0. Sair do Sistema\n");
         printf("====================================================\n");
@@ -418,36 +420,53 @@ do {
 
         case 9: {
             printf("\n--- LABORATORIO DE INOVACAO DO CHEF ---\n");
-            printf("Navegacao de Emergencia: Rota segura com menos cruzamentos.\n");
+            printf("1. Navegacao de Emergencia: Rota segura com menos cruzamentos.\n");
+            printf("2. Identificar Comunidades Gastronomicas\n");
+            printf("Digite opcao: \n");
+            scanf("%d", &opcaoSecundaria);
+            while ((c = getchar()) != '\n' && c != EOF);
 
-            int origemEmergencia, destinoEmergencia;
+            switch(opcaoSecundaria){
+                case 1:{
+                printf("\nNavegacao de Emergencia: Rota segura com menos cruzamentos.\n");
+                 int origemEmergencia, destinoEmergencia;
 
-            printf("\n--- REGIOES DISPONIVEIS ---\n");
-            for (int i = 0; i < mapaLogistico->totalVertices; i++) {
-                printf("[%02d] %-25s", i, mapaLogistico->listaAdjacencia[i].nomeRegiao);
-                if ((i + 1) % 2 == 0) {
+                printf("\n--- REGIOES DISPONIVEIS ---\n");
+                for (int i = 0; i < mapaLogistico->totalVertices; i++) {
+                    printf("[%02d] %-25s", i, mapaLogistico->listaAdjacencia[i].nomeRegiao);
+                    if ((i + 1) % 2 == 0) {
                     printf("\n"); 
+                    }
                 }
-            }
-            if (mapaLogistico->totalVertices % 2 != 0) {
+                if (mapaLogistico->totalVertices % 2 != 0) {
                 printf("\n"); 
-            }
-            printf("----------------------------------------\n");
+                }
+                printf("----------------------------------------\n");
 
-            printf("\nDigite o ID da regiao de ORIGEM: ");
-            scanf("%d", &origemEmergencia);
-            printf("Digite o ID da regiao de DESTINO: ");
-            scanf("%d", &destinoEmergencia);
+                printf("\nDigite o ID da regiao de ORIGEM: ");
+                scanf("%d", &origemEmergencia);
+                printf("Digite o ID da regiao de DESTINO: ");
+                scanf("%d", &destinoEmergencia);
             
-            while ((c = getchar()) != '\n' && c != EOF); 
+                while ((c = getchar()) != '\n' && c != EOF); 
 
-            if (origemEmergencia >= 0 && origemEmergencia < mapaLogistico->totalVertices && 
-                destinoEmergencia >= 0 && destinoEmergencia < mapaLogistico->totalVertices) {
+                if (origemEmergencia >= 0 && origemEmergencia < mapaLogistico->totalVertices && 
+                    destinoEmergencia >= 0 && destinoEmergencia < mapaLogistico->totalVertices) {
                 
-                calcularRotaEmergenciaBFS(mapaLogistico, origemEmergencia, destinoEmergencia);
+                    calcularRotaEmergenciaBFS(mapaLogistico, origemEmergencia, destinoEmergencia);
                 
-            } else {
+                }   else {
                 printf("\n[ERRO] Regiao invalida! Digite IDs entre 0 e %d.\n", mapaLogistico->totalVertices - 1);
+                }
+                break;
+            }
+            case 2:{
+                printf("Identificando Comunidades Gastronomicas...\n");
+                identificarComunidades(catalogo,totalReceitas);
+                break;
+            }
+            default:
+            printf("Opcao Invalida\n");
             }
             break;
         }
