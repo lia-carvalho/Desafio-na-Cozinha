@@ -334,6 +334,49 @@ do {
             }
             break;
         case 7:
+            printf("\n--- MODO LOGISTICA ---\n");
+            printf("1. Consultar melhor rota para entregas\n");
+            printf("2. Planejar caminho de distribuição de ingredientes\n");
+            printf("Escolha uma opcao: ");
+            scanf("%d", &opcaoSecundaria);
+            while ((c = getchar()) != '\n' && c != EOF);
+
+            switch (opcaoSecundaria) {
+                case 1: {
+                    int origem, destino;
+                    printf("\n--- REGIOES DISPONIVEIS PARA ENTREGA ---\n");
+                    for (int i = 0; i < mapaLogistico->totalVertices; i++) {
+                        
+                        printf("[%02d] %-25s", i, mapaLogistico->listaAdjacencia[i].nomeRegiao);
+                        if ((i + 1) % 2 == 0) {
+                            printf("\n"); 
+                        }
+                    }
+                    if (mapaLogistico->totalVertices % 2 != 0) {
+                        printf("\n"); 
+                    }
+                    printf("----------------------------------------\n");
+                    printf("Digite o ID da regiao de ORIGEM (Ex: 0 para Cozinha Central): ");
+                    scanf("%d", &origem);
+                    printf("Digite o ID da regiao de DESTINO: ");
+                    scanf("%d", &destino);
+                    while ((c = getchar()) != '\n' && c != EOF);
+                    
+                    if (origem >= 0 && origem < mapaLogistico->totalVertices && 
+                        destino >= 0 && destino < mapaLogistico->totalVertices) {
+                        calcularRotaEntrega(mapaLogistico, origem, destino);
+                    } else {
+                        printf("\n[ERRO] Regiao invalida! Digite IDs entre 0 e 29.\n");
+                    }
+                    break;
+                }
+                case 2:
+                    printf("\nAnalisando o melhor caminho para a rede de distribuição...\n");
+                    calcularDistribuicao(mapaLogistico);
+                    break;
+                default:
+                    printf("Opcao invalida!\n");
+            }
 
             break;
         case 8:
