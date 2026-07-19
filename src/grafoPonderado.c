@@ -194,6 +194,79 @@ void calcularDistribuicao(GrafoLogistico* grafo) {
         free(pai);
         free(naArvore);
     }
+void calcularRotaEmergenciaBFS(GrafoLogistico* grafo, int origem, int destino) {
+    int n = grafo->totalVertices;
+    
+    int* fila = (int*)malloc(n * sizeof(int));
+    int* anteriores = (int*)malloc(n * sizeof(int));
+    bool* visitados = (bool*)malloc(n * sizeof(bool));
+    
+    int inicioFila = 0, fimFila = 0;
+
+    for (int i = 0; i < n; i++) {
+        visitados[i] = false;
+        anteriores[i] = -1;
+    }
+
+    visitados[origem] = true;
+    fila[fimFila++] = origem;
+
+    bool encontrou = false;
+
+    while (inicioFila < fimFila) {
+        int u = fila[inicioFila++]; 
+
+        if (u == destino) {
+            encontrou = true;
+            break;
+        }
+
+        ArestaLogistica* arestaAtual = grafo->listaAdjacencia[u].arestas;
+        while (arestaAtual != NULL) {
+            int v = arestaAtual->indiceDestino;
+            
+            if (!visitados[v]) {
+                visitados[v] = true;
+                anteriores[v] = u;
+                fila[fimFila++] = v; 
+            }
+            arestaAtual = arestaAtual->proximo;
+        }
+    }
+
+    
+    printf("\n=== Modulo 8: Navegacao de Emergencia (Tempestade) ===\n");
+    if (!encontrou) {
+        printf("Rota bloqueada ou inacessivel!\n");
+    } else {
+       
+        printf("Caminho mais seguro: ");
+
+        int* caminho = (int*)malloc(n * sizeof(int));
+        int passadas = 0;
+        int atual = destino;
+
+        while (atual != -1) {
+            caminho[passadas++] = atual;
+            atual = anteriores[atual];
+        }
+
+        
+        for (int i = passadas - 1; i >= 0; i--) {
+            printf("[%s]", grafo->listaAdjacencia[caminho[i]].nomeRegiao);
+            if (i > 0) printf(" -> ");
+        }
+        
+        
+        printf("\nTotal de bairros cruzados: %d\n", passadas - 1);
+        free(caminho);
+    }
+    printf("======================================================\n\n");
+
+    free(fila);
+    free(anteriores);
+    free(visitados);
+}
 
 
 void carregarMapaPelotas(GrafoLogistico* mapa) {
