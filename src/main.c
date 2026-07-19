@@ -116,6 +116,9 @@ int main () {
         }
         fclose(arquivo);
 
+    GrafoLogistico* mapaLogistico = criarGrafoLogistico(30);
+    carregarMapaPelotas(mapaLogistico);
+
 
 //Interface:
 int opcaoInicial, opcaoSecundaria;
@@ -138,7 +141,8 @@ do {
         printf("5. Modulo 5 - Oficina de Producao\n");
         printf("6. Modo Investigacao\n");
         printf("7. Modo Logistica\n");
-        printf("8. Laboratorio de Inovacao do Chef\n");
+        printf("8. Menu Degustação VIP\n")
+        printf("9. Laboratorio de Inovacao do Chef\n");
         printf("0. Sair do Sistema\n");
         printf("====================================================\n");
         printf("Escolha uma opcao: ");
@@ -334,7 +338,7 @@ do {
             }
             break;
         case 7:
-            printf("\n--- MODO LOGISTICA ---\n");
+        printf("\n--- MODO LOGISTICA ---\n");
             printf("1. Consultar melhor rota para entregas\n");
             printf("2. Planejar caminho de distribuição de ingredientes\n");
             printf("Escolha uma opcao: ");
@@ -356,7 +360,7 @@ do {
                         printf("\n"); 
                     }
                     printf("----------------------------------------\n");
-                    printf("Digite o ID da regiao de ORIGEM: ");
+                    printf("Digite o ID da regiao de ORIGEM (Ex: 0 para Cozinha Central): ");
                     scanf("%d", &origem);
                     printf("Digite o ID da regiao de DESTINO: ");
                     scanf("%d", &destino);
@@ -380,7 +384,7 @@ do {
 
             break;
         case 8:
-             printf("\n--- MENU DEGUSTACAO VIP ---\n");
+        printf("\n--- MENU DEGUSTACAO VIP ---\n");
             printf("Escolha a restricao para a otimizacao do cardapio:\n");
             printf("1. Maximar Avaliacao com limite de TEMPO\n");
             printf("2. Maximar Avaliacao com limite de ORÇAMENTO\n");
@@ -411,6 +415,43 @@ do {
                     printf("\n[ERRO] Opcao invalida!\n");
             }
             break;
+
+        case 9: {
+            printf("\n--- LABORATORIO DE INOVACAO DO CHEF ---\n");
+            printf("Navegacao de Emergencia: Rota segura com menos cruzamentos.\n");
+
+            int origemEmergencia, destinoEmergencia;
+
+            printf("\n--- REGIOES DISPONIVEIS ---\n");
+            for (int i = 0; i < mapaLogistico->totalVertices; i++) {
+                printf("[%02d] %-25s", i, mapaLogistico->listaAdjacencia[i].nomeRegiao);
+                if ((i + 1) % 2 == 0) {
+                    printf("\n"); 
+                }
+            }
+            if (mapaLogistico->totalVertices % 2 != 0) {
+                printf("\n"); 
+            }
+            printf("----------------------------------------\n");
+
+            printf("\nDigite o ID da regiao de ORIGEM: ");
+            scanf("%d", &origemEmergencia);
+            printf("Digite o ID da regiao de DESTINO: ");
+            scanf("%d", &destinoEmergencia);
+            
+            while ((c = getchar()) != '\n' && c != EOF); 
+
+            if (origemEmergencia >= 0 && origemEmergencia < mapaLogistico->totalVertices && 
+                destinoEmergencia >= 0 && destinoEmergencia < mapaLogistico->totalVertices) {
+                
+                calcularRotaEmergenciaBFS(mapaLogistico, origemEmergencia, destinoEmergencia);
+                
+            } else {
+                printf("\n[ERRO] Regiao invalida! Digite IDs entre 0 e %d.\n", mapaLogistico->totalVertices - 1);
+            }
+            break;
+        }
+
         case 0:
             printf("\nSaindo do Sistema...\n");
             break;
