@@ -25,4 +25,5 @@ void definirNomeRegiao(GrafoLogistico* grafo, int indice, const char* nome);
 void calcularDistribuicao(GrafoLogistico* grafo);
 void encontrarRotaEntrega(GrafoLogistico* grafo, int origem, int destino);
 void carregarMapaPelotas(GrafoLogistico* mapa);
+void calcularRotaEmergenciaBFS(GrafoLogistico* grafo, int origem, int destino);
 #endif
