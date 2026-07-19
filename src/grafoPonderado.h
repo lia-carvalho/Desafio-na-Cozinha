@@ -22,4 +22,7 @@ void adicionarArestaLogistica(GrafoLogistico* grafo, int origem, int destino, in
 void liberarGrafoLogistico(GrafoLogistico* grafo);
 void imprimirGrafoLogistico(GrafoLogistico* grafo);
 void definirNomeRegiao(GrafoLogistico* grafo, int indice, const char* nome);
+void calcularDistribuicao(GrafoLogistico* grafo);
+void encontrarRotaEntrega(GrafoLogistico* grafo, int origem, int destino);
+void carregarMapaPelotas(GrafoLogistico* mapa);
 #endif
