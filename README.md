@@ -43,7 +43,9 @@ O "Desafio na Cozinha" é um sistema inteligente desenvolvido em C para o gerenc
     - A Busca em Largura (BFS) foi aplicada em um mapa logístico para encontrar rotas mais curtas e seguras.
     - Dijkstra: Calcula o caminho mínimo (em minutos) para rotas de entrega.
     - Prim: Cria uma Árvore Geradora Mínima para redes de distribuição, conectando todos os bairros com o menor custo total.
-
+    - Grafo Logístico: 30 vértices(bairros) e 52 arestas.
+    - Grafo de Dependências: 59 vértices(receitas) e 113 arestas.
+ 
 
 ### 5. Programação Dinâmica
 
